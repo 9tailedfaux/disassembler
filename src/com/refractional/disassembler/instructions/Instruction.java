@@ -1,5 +1,11 @@
 package com.refractional.disassembler.instructions;
 
-public interface Instruction {
-	String opcode = "";
+public abstract class Instruction {
+	String opcode;
+	String name;
+
+	public Instruction(String opcode, String name) {
+		this.opcode = opcode;
+		this.name = name;
+	}
 }

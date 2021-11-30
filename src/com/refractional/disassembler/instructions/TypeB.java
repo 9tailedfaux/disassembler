@@ -1,12 +1,25 @@
 package com.refractional.disassembler.instructions;
 
-public class TypeB extends Instruction{
-    public String brAddress;
+import com.refractional.disassembler.Label;
+import com.refractional.disassembler.Node;
+
+public class TypeB extends BranchTypes{
+    public int brAddress;
 
     public TypeB(String opcode,
                  String name,
-                 String brAddress) {
+                 int brAddress) {
         super(opcode, name);
         this.brAddress = brAddress;
+    }
+
+    @Override
+    public String toString() {
+        return name + label;
+    }
+
+    public static TypeB from(Node node, String fullCode){
+        int brAddress = binaryToDec(fullCode.substring(6, 32));
+        return new TypeB(node.opcode, node.mnemonic, brAddress);
     }
 }

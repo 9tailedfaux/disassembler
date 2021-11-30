@@ -1,14 +1,16 @@
 package com.refractional.disassembler;
 
 public class Node {
-	String mnemonic;
-	String type;
+	public String opcode;
+	public String type;
+	public String mnemonic;
 	Node zero; 
 	Node one; 
 	
-	Node(String mnemonic, String type) {
-		this.mnemonic = mnemonic;
+	Node(String opcode, String type, String mnemonic) {
+		this.opcode = opcode;
 		this.type = type;
+		this.mnemonic = mnemonic;
 		one = null; 
 		zero = null; 
 	} 

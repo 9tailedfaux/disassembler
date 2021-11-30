@@ -1,21 +1,36 @@
 package com.refractional.disassembler.instructions;
 
+import com.refractional.disassembler.Node;
+
 public class TypeD extends Instruction{
-    public String dtAddress;
-    public String op;
-    public String rn;
-    public String rt;
+    public int dtAddress;
+    public int op;
+    public int rn;
+    public int rt;
 
     public TypeD(String opcode,
                  String name,
-                 String dtAddress,
-                 String op,
-                 String rn,
-                 String rt) {
+                 int dtAddress,
+                 int op,
+                 int rn,
+                 int rt) {
         super(opcode, name);
         this.dtAddress = dtAddress;
         this.op = op;
         this.rn = rn;
         this.rt = rt;
+    }
+
+    @Override
+    public String toString() {
+        return name + " R" + rt + ", [X" + rn + ", #" + dtAddress + "]";
+    }
+
+    public static TypeD from(Node node, String fullCode){
+        int dtAddress = binaryToDec(fullCode.substring(11, 20));
+        int op = binaryToDec(fullCode.substring(20, 22));
+        int rn = binaryToDec(fullCode.substring(22, 27));
+        int rt = binaryToDec(fullCode.substring(27, 32));
+        return  new TypeD(node.opcode, node.mnemonic, dtAddress, op, rn, rt);
     }
 }

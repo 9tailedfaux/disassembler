@@ -21,12 +21,12 @@ public class TypeCB extends BranchTypes {
     }
 
     public static TypeCB from(Node node, String fullCode){
-        int condBrAddress = b2dUnsigned(fullCode.substring(8, 27));
+        int condBrAddress = b2dSigned(fullCode.substring(8, 27));
         int rt = b2dUnsigned(fullCode.substring(27, 32));
         if (node.mnemonic.contentEquals("B.cond")) {
             return new CBcond(
                     node.opcode,
-                    node.mnemonic.substring(0, 6),
+                    node.mnemonic.substring(0, 1),
                     condBrAddress,
                     rt);
         }
@@ -45,7 +45,7 @@ class CBcond extends TypeCB {
 
     @Override
     public String toString() {
-        return name + "." + condition + " " + condBrAddress;
+        return name + "." + condition + " " + label;
     }
 
     private String getCondition(int code) {

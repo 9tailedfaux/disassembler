@@ -3,7 +3,6 @@ package com.refractional.disassembler.instructions;
 import com.refractional.disassembler.Label;
 import com.refractional.disassembler.Node;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public abstract class Instruction {
@@ -18,12 +17,29 @@ public abstract class Instruction {
 		this.name = name;
 	}
 
-	public static int b2dSigned(String binary){
-		int modifier;
-		if (binary.charAt(0) == '1') modifier = -1; else modifier = 1;
-		binary = binary.substring(1);
+	private static String twosComplement(String binary){
+		StringBuilder twos = new StringBuilder();
+		boolean foundOne = false;
+		for (int i = binary.length() - 1; i >= 0; i--) {
+			if (foundOne) {
+				twos.insert(0, ((binary.charAt(i) == '0') ? '1' : '0'));
+			} else {
+				twos.insert(0, (binary.charAt(i)));
+			}
+			if (binary.charAt(i) == '1' && !foundOne) {
+				foundOne = true;
+			}
+		}
+		return twos.toString();
+	}
 
-		return Integer.parseUnsignedInt(binary, 2) * modifier;
+	public static int b2dSigned(String binary){
+		int mult = 1;
+		if (binary.charAt(0) == '1') {
+			binary = twosComplement(binary);
+			mult = -1;
+		}
+		return Integer.parseUnsignedInt(binary, 2) * mult;
 	}
 
 	public static int b2dUnsigned(String binary){

@@ -24,7 +24,7 @@ public class Disassembler {
     private static void printInstructions(ArrayList<Instruction> instructions){
         for (int i = 0; i < instructions.size(); i++) {
             if (labels.containsKey(i)) {
-                System.out.println(labels.get(i).toString());
+                System.out.println(labels.get(i).toString() + ":");
             }
             System.out.println(instructions.get(i).toString());
         }

@@ -18,7 +18,7 @@ public class TypeB extends BranchTypes{
     }
 
     public static TypeB from(Node node, String fullCode){
-        int brAddress = b2dUnsigned(fullCode.substring(6, 32));
+        int brAddress = b2dSigned(fullCode.substring(6, 32));
         return new TypeB(node.opcode, node.mnemonic, brAddress);
     }
 }

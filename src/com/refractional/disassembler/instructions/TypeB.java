@@ -1,6 +1,5 @@
 package com.refractional.disassembler.instructions;
 
-import com.refractional.disassembler.Label;
 import com.refractional.disassembler.Node;
 
 public class TypeB extends BranchTypes{
@@ -15,11 +14,11 @@ public class TypeB extends BranchTypes{
 
     @Override
     public String toString() {
-        return name + label;
+        return name + " " + label;
     }
 
     public static TypeB from(Node node, String fullCode){
-        int brAddress = binaryToDec(fullCode.substring(6, 32));
+        int brAddress = b2dUnsigned(fullCode.substring(6, 32));
         return new TypeB(node.opcode, node.mnemonic, brAddress);
     }
 }

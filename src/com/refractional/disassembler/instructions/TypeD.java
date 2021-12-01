@@ -27,10 +27,10 @@ public class TypeD extends Instruction{
     }
 
     public static TypeD from(Node node, String fullCode){
-        int dtAddress = binaryToDec(fullCode.substring(11, 20));
-        int op = binaryToDec(fullCode.substring(20, 22));
-        int rn = binaryToDec(fullCode.substring(22, 27));
-        int rt = binaryToDec(fullCode.substring(27, 32));
+        int dtAddress = b2dUnsigned(fullCode.substring(11, 20));
+        int op = b2dUnsigned(fullCode.substring(20, 22));
+        int rn = b2dUnsigned(fullCode.substring(22, 27));
+        int rt = b2dUnsigned(fullCode.substring(27, 32));
         return  new TypeD(node.opcode, node.mnemonic, dtAddress, op, rn, rt);
     }
 }

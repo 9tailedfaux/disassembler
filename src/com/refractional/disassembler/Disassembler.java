@@ -47,7 +47,7 @@ public class Disassembler {
         while (true) {
             int val = bufferedInputStream.read();
             if (val < 0) break;
-            if (bits.addByte(val) != null) {
+            if (bits.addByte(val)) {
                 binaryArrayList.add(bits.toString());
                 bits.clear();
             }

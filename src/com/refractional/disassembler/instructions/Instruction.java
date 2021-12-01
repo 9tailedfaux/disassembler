@@ -18,8 +18,16 @@ public abstract class Instruction {
 		this.name = name;
 	}
 
-	public static int binaryToDec(String binary){
-		return Integer.parseInt(binary, 2);
+	public static int b2dSigned(String binary){
+		int modifier;
+		if (binary.charAt(0) == '1') modifier = -1; else modifier = 1;
+		binary = binary.substring(1);
+
+		return Integer.parseUnsignedInt(binary, 2) * modifier;
+	}
+
+	public static int b2dUnsigned(String binary){
+		return Integer.parseUnsignedInt(binary, 2);
 	}
 
 	private static Label itsABranch(int lineNum, int brAddress, Map<Integer, Label> labels) {

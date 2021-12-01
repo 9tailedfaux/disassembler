@@ -1,19 +1,19 @@
 package com.refractional.disassembler;
 
 public class ThirtyTwoBits {
-    private int index;
+    private int index = 0;
     private int[] bytes;
 
     public ThirtyTwoBits() {
         init();
     }
 
-    public String addByte(int b){
-        if (index >= 3) {
-            return buildString();
-        }
+    public boolean addByte(int b){
         bytes[index++] = b;
-        return null;
+        if (index >= 4) {
+            return true;
+        }
+        return false;
     }
 
     public String toString() {

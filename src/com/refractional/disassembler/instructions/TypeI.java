@@ -24,9 +24,9 @@ public class TypeI extends Instruction{
     }
 
     public static TypeI from(Node node, String fullCode){
-        int aluImmediate = binaryToDec(fullCode.substring(10, 22));
-        int rn = binaryToDec(fullCode.substring(22, 27));
-        int rd = binaryToDec(fullCode.substring(27, 32));
+        int aluImmediate = b2dSigned(fullCode.substring(10, 22));
+        int rn = b2dUnsigned(fullCode.substring(22, 27));
+        int rd = b2dUnsigned(fullCode.substring(27, 32));
         return new TypeI(node.opcode, node.mnemonic, aluImmediate, rn, rd);
     }
 }

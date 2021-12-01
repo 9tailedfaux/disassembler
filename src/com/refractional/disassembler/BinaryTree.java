@@ -12,7 +12,7 @@ public class BinaryTree {
 	}
 	
 	private Node addRecursive(Node current, String mnemonic, String code, String type) {
-		if (code.length() <= 1) {
+		if (code.length() < 1) {
 			return new Node(mnemonic, type, code);
 		}
 		

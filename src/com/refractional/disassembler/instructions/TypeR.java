@@ -27,10 +27,10 @@ public class TypeR extends Instruction{
     }
 
     public static TypeR from(Node node, String fullCode){
-        int rm = binaryToDec(fullCode.substring(11, 16));
-        int shamt = binaryToDec(fullCode.substring(16, 22));
-        int rn = binaryToDec(fullCode.substring(22, 27));
-        int rd = binaryToDec(fullCode.substring(27, 32));
+        int rm = b2dUnsigned(fullCode.substring(11, 16));
+        int shamt = b2dUnsigned(fullCode.substring(16, 22));
+        int rn = b2dUnsigned(fullCode.substring(22, 27));
+        int rd = b2dUnsigned(fullCode.substring(27, 32));
         return new TypeR(node.opcode, node.mnemonic, rm, shamt, rn, rd);
     }
 }

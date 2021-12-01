@@ -21,8 +21,8 @@ public class TypeCB extends BranchTypes {
     }
 
     public static TypeCB from(Node node, String fullCode){
-        int condBrAddress = binaryToDec(fullCode.substring(8, 27));
-        int rt = binaryToDec(fullCode.substring(27, 32));
+        int condBrAddress = b2dUnsigned(fullCode.substring(8, 27));
+        int rt = b2dUnsigned(fullCode.substring(27, 32));
         if (node.mnemonic.contentEquals("B.cond")) {
             return new CBcond(
                     node.opcode,

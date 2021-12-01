@@ -7,7 +7,7 @@ public class Node {
 	Node zero; 
 	Node one; 
 	
-	Node(String opcode, String type, String mnemonic) {
+	Node(String mnemonic, String type, String opcode) {
 		this.opcode = opcode;
 		this.type = type;
 		this.mnemonic = mnemonic;
